@@ -18,11 +18,53 @@ BORDER = 1
 
 STAR_SYMBOLS = ('+', '*', '.', ':')
 
+SPACE_KEY_CODE = 32
+LEFT_KEY_CODE = 260
+RIGHT_KEY_CODE = 261
+UP_KEY_CODE = 259
+DOWN_KEY_CODE = 258
+
+
+def read_controls(canvas):
+    """Read keys pressed and returns tuple witl controls state."""
+
+    rows_direction = columns_direction = 0
+    space_pressed = False
+
+    while True:
+        pressed_key_code = canvas.getch()
+
+        if pressed_key_code == -1:
+            # https://docs.python.org/3/library/curses.html#curses.window.getch
+            break
+
+        if pressed_key_code == UP_KEY_CODE:
+            rows_direction = -1
+
+        if pressed_key_code == DOWN_KEY_CODE:
+            rows_direction = 1
+
+        if pressed_key_code == RIGHT_KEY_CODE:
+            columns_direction = 1
+
+        if pressed_key_code == LEFT_KEY_CODE:
+            columns_direction = -1
+
+        if pressed_key_code == SPACE_KEY_CODE:
+            space_pressed = True
+
+    return rows_direction, columns_direction, space_pressed
+
+
 async def draw_ship(canvas, row, column, symbol):
     while True:
+        rows_direction, columns_direction, space_pressed = read_controls(canvas)
         ship = next(symbol)
+        row = row + rows_direction if rows_direction else row
+        column = column + columns_direction if columns_direction else column
         draw_frame(canvas, row, column, ship, negative=False)
-        await asyncio.sleep(0)
+        for _ in range(2):
+            await asyncio.sleep(0)
         draw_frame(canvas, row, column, ship, negative=True)
 
 async def blink(canvas, row, column, symbol='*'):
@@ -123,6 +165,9 @@ def draw_frame(canvas, start_row, start_column, text, negative=False):
             canvas.addch(row, column, symbol)
 
 def draw(canvas):
+    canvas.border()
+    canvas.nodelay(True)
+    curses.curs_set(False)
     stars = get_stars(canvas)
     max_y, max_x = canvas.getmaxyx()
     start_row = max_y // 2
@@ -145,8 +190,5 @@ def draw(canvas):
 
 
 if __name__ == '__main__':
-    curses.initscr()
-    curses.update_lines_cols()
-    curses.curs_set(0)
     curses.wrapper(draw)
 
