@@ -1,9 +1,8 @@
 [tool.poetry]
-
 name = "space-game"
 version = "0.1.0"
 description = ""
-authors = ["Артём Нечай <a.nechai@okenit.ru>"]
+authors = ["Artem Nechai <lenikol95@mail.ru>"]
 
 [tool.poetry.dependencies]
 python = ">=3.9"
