@@ -1,5 +1,8 @@
 """Module with utilities for game running."""
 
+from collections.abc import Iterator
+from itertools import cycle
+
 SPACE_KEY_CODE = 32
 LEFT_KEY_CODE = 260
 RIGHT_KEY_CODE = 261
@@ -39,7 +42,8 @@ def get_frame_size(text) -> tuple:
     Args:
         text: object to be parsed.
 
-    Returns: size pair (rows number, colums number).
+    Returns:
+        Size pair (rows number, colums number).
     """
     lines = text.splitlines()
     rows = len(lines)
@@ -77,3 +81,20 @@ def draw_frame(canvas, start_row, start_column, text, negative=False):
                 continue
             symbol = symbol if not negative else ' '
             canvas.addch(row, column, symbol)
+
+
+def cycle_object_frames(paths_to_frames)->Iterator[str]:
+    """Create iterator of object frames for animation.
+
+    Args:
+        paths_to_frames: paths to files with frames.
+
+    Returns:
+        Cycle iterator with object frames.
+    """
+    frames = []
+    for path in paths_to_frames:
+        with open(path) as frame_file:
+            frame = frame_file.read()
+        frames.append(frame)
+    return cycle(frames)
