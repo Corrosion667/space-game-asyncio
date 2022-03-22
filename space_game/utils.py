@@ -24,13 +24,13 @@ def read_controls(canvas) -> tuple:
             # https://docs.python.org/3/library/curses.html#curses.window.getch
             break
         if pressed_key_code == UP_KEY_CODE:
-            rows_direction = -10
+            rows_direction = -1
         if pressed_key_code == DOWN_KEY_CODE:
-            rows_direction = 10
+            rows_direction = 1
         if pressed_key_code == RIGHT_KEY_CODE:
-            columns_direction = 10
+            columns_direction = 1
         if pressed_key_code == LEFT_KEY_CODE:
-            columns_direction = -10
+            columns_direction = -1
         if pressed_key_code == SPACE_KEY_CODE:
             space_pressed = True
     return rows_direction, columns_direction, space_pressed
