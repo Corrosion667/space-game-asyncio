@@ -15,6 +15,9 @@ def read_controls(canvas) -> tuple:
 
     Args:
         canvas: playing field.
+
+    Returns:
+        controls !!!todo.
     """
     rows_direction = columns_direction = 0
     space_pressed = False
@@ -79,11 +82,11 @@ def draw_frame(canvas, start_row, start_column, text, negative=False):
             # https://docs.python.org/3/library/curses.html#curses.window.addch
             if row == rows_number - 1 and column == columns_number - 1:
                 continue
-            symbol = symbol if not negative else ' '
+            symbol = ' ' if negative else symbol
             canvas.addch(row, column, symbol)
 
 
-def cycle_object_frames(paths_to_frames)->Iterator[str]:
+def cycle_object_frames(paths_to_frames) -> Iterator[str]:
     """Create iterator of object frames for animation.
 
     Args:

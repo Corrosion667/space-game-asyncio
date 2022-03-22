@@ -3,16 +3,12 @@
 import asyncio
 import curses
 
-from settings import FIRE_ROWS_SPEED, FIRE_COLUMNS_SPEED, BORDER_THICKNESS
-from utils import read_controls, get_frame_size, draw_frame
+from settings import BORDER_THICKNESS, FIRE_COLUMNS_SPEED, FIRE_ROWS_SPEED
+from utils import draw_frame, get_frame_size, read_controls
 
 
 async def fire(
-        canvas,
-        start_row,
-        start_column,
-        rows_speed=FIRE_ROWS_SPEED,
-        columns_speed=FIRE_COLUMNS_SPEED,
+    canvas, start_row, start_column, rows_speed=FIRE_ROWS_SPEED, columns_speed=FIRE_COLUMNS_SPEED,
 ):
     """Display animation of gun shot, direction and speed can be specified.
 
@@ -58,13 +54,13 @@ async def animate_spaceship(canvas, row, column, ship_frames):
         spaceship = next(ship_frames)
         frame_rows, frame_columns = get_frame_size(spaceship)
         if rows_direction > 0:
-            row = min(row + rows_direction, max_row-frame_rows - BORDER_THICKNESS)
+            row = min(row + rows_direction, max_row - frame_rows - BORDER_THICKNESS)
         elif rows_direction < 0:
-            row = max(row + rows_direction, 0 + BORDER_THICKNESS)
+            row = max(row + rows_direction, BORDER_THICKNESS)
         if columns_direction > 0:
-            column = min(column + columns_direction, max_column-frame_columns - BORDER_THICKNESS)
+            column = min(column + columns_direction, max_column - frame_columns - BORDER_THICKNESS)
         elif columns_direction < 0:
-            column = max(column + columns_direction, 0 + BORDER_THICKNESS)
+            column = max(column + columns_direction, BORDER_THICKNESS)
         draw_frame(canvas, row, column, spaceship, negative=False)
         for _ in range(2):
             await asyncio.sleep(0)

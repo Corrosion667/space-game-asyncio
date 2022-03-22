@@ -3,9 +3,9 @@
 import curses
 import time
 
-from stars import get_stars
+from settings import INITIAL_SPACESHIP_POSITION_SHIFT, SPACESHIP_FRAMES, TIC_TIMEOUT
 from spaceship import animate_spaceship, fire
-from settings import TIC_TIMEOUT, INITIAL_SPACESHIP_POSITION_SHIFT, SPACESHIP_FRAMES
+from stars import get_stars
 from utils import cycle_object_frames
 
 
@@ -26,7 +26,9 @@ def draw(canvas):
     courutines = [
         *stars,
         fire(canvas, start_row, start_colunm),
-        animate_spaceship(canvas, start_row, start_colunm - INITIAL_SPACESHIP_POSITION_SHIFT, ship_frames)
+        animate_spaceship(
+            canvas, start_row, start_colunm - INITIAL_SPACESHIP_POSITION_SHIFT, ship_frames,
+        ),
     ]
     while True:
         for courutine in courutines.copy():
