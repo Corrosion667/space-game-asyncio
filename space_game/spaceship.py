@@ -3,8 +3,8 @@
 import asyncio
 import curses
 
-from settings import FIRE_ROWS_SPEED, FIRE_COLUMNS_SPEED, SPACESHIP_FRAMES, BORDER_THICKNESS
-from utils import read_controls, get_frame_size, draw_frame, cycle_object_frames
+from settings import FIRE_ROWS_SPEED, FIRE_COLUMNS_SPEED, BORDER_THICKNESS
+from utils import read_controls, get_frame_size, draw_frame
 
 
 async def fire(
@@ -43,18 +43,18 @@ async def fire(
         column += columns_speed
 
 
-async def animate_spaceship(canvas, row, column):
+async def animate_spaceship(canvas, row, column, ship_frames):
     """Display animation of spaceship, which can be controlled with arrows.
 
     Args:
         canvas: playing field.
         row: position where to display spaceship (Y).
         column: position where to display spaceship (X).
+        ship_frames: frames put in a cycle.
     """
     while True:
         max_row, max_column = canvas.getmaxyx()
         rows_direction, columns_direction, space_pressed = read_controls(canvas)
-        ship_frames = cycle_object_frames(SPACESHIP_FRAMES)
         spaceship = next(ship_frames)
         frame_rows, frame_columns = get_frame_size(spaceship)
         if rows_direction > 0:
