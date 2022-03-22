@@ -22,6 +22,7 @@ async def blink(canvas, row, column, symbol):
     canvas.addstr(row, column, symbol, curses.A_DIM)
     for _ in range(random.randint(1, STAR_APPEARANCE_TIMEOUT)):
         await asyncio.sleep(0)
+
     while True:
         canvas.addstr(row, column, symbol, curses.A_DIM)
         for _ in range(DIM_LIFETIME):
