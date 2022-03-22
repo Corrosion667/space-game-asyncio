@@ -4,6 +4,8 @@ import time
 import random
 
 from itertools import cycle
+from stars import get_stars
+
 
 with open('/home/artem/space-game-asyncio/space_game/frames/rocket/rocket_frame_1.txt') as rocket:
     rocket1 = rocket.read()
@@ -13,10 +15,9 @@ with open('/home/artem/space-game-asyncio/space_game/frames/rocket/rocket_frame_
 
 iterator = cycle([rocket1, rocket2])
 
-TIC_TIMEOUT = 0.1
+TIC_TIMEOUT = 0.01
 BORDER = 1
 
-STAR_SYMBOLS = ('+', '*', '.', ':')
 
 SPACE_KEY_CODE = 32
 LEFT_KEY_CODE = 260
@@ -58,50 +59,27 @@ def read_controls(canvas):
 
 async def draw_ship(canvas, row, column, symbol):
     while True:
+        max_row, max_column = canvas.getmaxyx()
         rows_direction, columns_direction, space_pressed = read_controls(canvas)
         ship = next(symbol)
-        row = row + rows_direction if rows_direction else row
-        column = column + columns_direction if columns_direction else column
+        # if rows_direction > 0:
+        #     row = min(row + rows_direction, max_row - BORDER)
+        # elif rows_direction < 0:
+        #     row = max(row + rows_direction, 0 + BORDER)
+        # if columns_direction > 0:
+        #     column = min(column + columns_direction, max_column - BORDER)
+        # elif columns_direction < 0:
+        #     column = max(column + columns_direction, 0 + BORDER)
+        row = min(row + rows_direction, max_row - BORDER)
+        row = max(row, 0 + BORDER)
+        column = min(column + columns_direction, max_column - BORDER)
+        column = max(column, 0 + BORDER)
+        # row = row + rows_direction if rows_direction else row
+        # column = column + columns_direction if columns_direction else column
         draw_frame(canvas, row, column, ship, negative=False)
         for _ in range(2):
             await asyncio.sleep(0)
         draw_frame(canvas, row, column, ship, negative=True)
-
-async def blink(canvas, row, column, symbol='*'):
-    canvas.addstr(row, column, symbol, curses.A_DIM)
-    for _ in range(random.randint(1, 100)):
-        await asyncio.sleep(0)
-    while True:
-        canvas.addstr(row, column, symbol, curses.A_DIM)
-        for _ in range(20):
-            await asyncio.sleep(0)
-
-        canvas.addstr(row, column, symbol)
-        for _ in range(3):
-            await asyncio.sleep(0)
-
-        canvas.addstr(row, column, symbol, curses.A_BOLD)
-        for _ in range(5):
-            await asyncio.sleep(0)
-
-        canvas.addstr(row, column, symbol)
-        for _ in range(3):
-            await asyncio.sleep(0)
-
-
-def get_stars(canvas):
-    star_quantity = 200
-    max_y, max_x = canvas.getmaxyx()
-    stars = [
-        blink(
-            canvas,
-            row=random.randint(1, max_y - BORDER),
-            column=random.randint(1, max_x - BORDER),
-            symbol=random.choice(STAR_SYMBOLS),
-        ) for _ in range(star_quantity)
-    ]
-    return stars
-
 
 
 
