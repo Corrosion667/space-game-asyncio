@@ -22,20 +22,20 @@ def draw(canvas):
     ship_frames = cycle_object_frames(SPACESHIP_FRAMES)
     max_row, max_column = canvas.getmaxyx()
     start_row = max_row // 2
-    start_colunm = max_column // 2
-    courutines = [
+    start_column = max_column // 2
+    coroutines = [
         *stars,
-        fire(canvas, start_row, start_colunm),
+        fire(canvas, start_row, start_column),
         animate_spaceship(
-            canvas, start_row, start_colunm - INITIAL_SPACESHIP_POSITION_SHIFT, ship_frames,
+            canvas, start_row, start_column - INITIAL_SPACESHIP_POSITION_SHIFT, ship_frames,
         ),
     ]
     while True:
-        for courutine in courutines.copy():
+        for coroutine in coroutines.copy():
             try:
-                courutine.send(None)
+                coroutine.send(None)
             except StopIteration:
-                courutines.remove(courutine)
+                coroutines.remove(coroutine)
         canvas.border()
         canvas.refresh()
         time.sleep(TIC_TIMEOUT)

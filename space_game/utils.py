@@ -11,7 +11,7 @@ DOWN_KEY_CODE = 258
 
 
 def read_controls(canvas) -> tuple:
-    """Read keys pressed and return tuple witl controls state.
+    """Read keys pressed and return tuple with controls state.
 
     Args:
         canvas: playing field.
@@ -46,7 +46,7 @@ def get_frame_size(text) -> tuple:
         text: object to be parsed.
 
     Returns:
-        Size pair (rows number, colums number).
+        Size pair (rows number, columns number).
     """
     lines = text.splitlines()
     rows = len(lines)
@@ -59,8 +59,8 @@ def draw_frame(canvas, start_row, start_column, text, negative=False):
 
     Args:
         canvas: playing field.
-        start_row: initianl position of drawing (Y).
-        start_column: initial position of drwaing (X).
+        start_row: initial position of drawing (Y).
+        start_column: initial position of drawing (X).
         text: multiline fragment to be drawn.
         negative: erase text instead of drawing if negative=True is specified.
     """

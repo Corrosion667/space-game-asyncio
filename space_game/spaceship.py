@@ -1,4 +1,4 @@
-"""Module for shaceship object and its gunfire."""
+"""Module for spaceship object and its gunfire."""
 
 import asyncio
 import curses
@@ -14,7 +14,7 @@ async def fire(
 
     Args:
         canvas: playing field.
-        start_row: initianl position of fire object (Y).
+        start_row: initial position of fire object (Y).
         start_column: initial position of fire object (X).
         rows_speed: movement within rows through time,
         columns_speed: movement within columns through time

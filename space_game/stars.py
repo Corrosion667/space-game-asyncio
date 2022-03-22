@@ -15,7 +15,7 @@ async def blink(canvas, row, column, symbol):
 
     Args:
         canvas: playing field.
-        row: poisition of a star (Y).
+        row: position of a star (Y).
         column: position of a star (X).
         symbol: form of a star.
     """
