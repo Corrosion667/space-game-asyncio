@@ -14,11 +14,11 @@ COMMON_LIFETIME = 3
 
 # fire
 FIRE_ROWS_SPEED = -0.3
-FIRE_COLUMNS_SPEED = -0.3
+FIRE_COLUMNS_SPEED = 0
 
 # spaceship
 SPACESHIP_FRAMES = (
-    '/space_game/frames/rocket/rocket_frame_1.txt',
-    '/space_game/frames/rocket/rocket_frame_2.txt',
+    './frames/rocket/rocket_frame_1.txt',
+    './frames/rocket/rocket_frame_2.txt',
 )
 INITIAL_SPACESHIP_POSITION_SHIFT = 2
