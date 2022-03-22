@@ -22,11 +22,11 @@ def draw(canvas):
     ship_frames = cycle_object_frames(SPACESHIP_FRAMES)
     max_row, max_column = canvas.getmaxyx()
     start_row = max_row // 2
-    start_colunm = max_column // 2 - INITIAL_SPACESHIP_POSITION_SHIFT
+    start_colunm = max_column // 2
     courutines = [
         *stars,
         fire(canvas, start_row, start_colunm),
-        animate_spaceship(canvas, start_row, start_colunm, ship_frames)
+        animate_spaceship(canvas, start_row, start_colunm - INITIAL_SPACESHIP_POSITION_SHIFT, ship_frames)
     ]
     while True:
         for courutine in courutines.copy():
