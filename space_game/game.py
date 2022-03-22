@@ -187,8 +187,9 @@ def draw(canvas):
         canvas.refresh()
         time.sleep(0.1)
 
-
+def main():
+    curses.wrapper(draw)
 
 if __name__ == '__main__':
-    curses.wrapper(draw)
+    main()
 

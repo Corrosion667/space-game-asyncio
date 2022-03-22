@@ -7,6 +7,9 @@ authors = ["Artem Nechai <lenikol95@mail.ru>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
 
+[tool.poetry.scripts]
+space-game = "space_game.game:main"
+
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.6.0"
 isort = "^5.10.1"
