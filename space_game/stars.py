@@ -4,7 +4,7 @@ import asyncio
 import curses
 import random
 
-from settings import (
+from space_game.settings import (
     BORDER_THICKNESS, BRIGHT_LIFETIME, COMMON_LIFETIME, DIM_LIFETIME, STAR_APPEARANCE_TIMEOUT,
     STAR_QUANTITY, STAR_SYMBOLS,
 )

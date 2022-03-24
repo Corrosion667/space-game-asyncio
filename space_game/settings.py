@@ -18,7 +18,7 @@ FIRE_COLUMNS_SPEED = 0
 
 # spaceship
 SPACESHIP_FRAMES = (
-    './frames/rocket/rocket_frame_1.txt',
-    './frames/rocket/rocket_frame_2.txt',
+    'space_game/frames/rocket/rocket_frame_1.txt',
+    'space_game/frames/rocket/rocket_frame_2.txt',
 )
 INITIAL_SPACESHIP_POSITION_SHIFT = 2

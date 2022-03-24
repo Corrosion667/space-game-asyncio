@@ -3,8 +3,8 @@
 import asyncio
 import curses
 
-from settings import BORDER_THICKNESS, FIRE_COLUMNS_SPEED, FIRE_ROWS_SPEED
-from utils import draw_frame, get_frame_size, read_controls
+from space_game.settings import BORDER_THICKNESS, FIRE_COLUMNS_SPEED, FIRE_ROWS_SPEED
+from space_game.utils import draw_frame, get_frame_size, read_controls
 
 
 async def fire(
