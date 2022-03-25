@@ -1,5 +1,9 @@
 """Module with constants affecting the game."""
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+
 # general
 TIC_TIMEOUT = 0.1
 BORDER_THICKNESS = 1
@@ -18,7 +22,7 @@ FIRE_COLUMNS_SPEED = 0
 
 # spaceship
 SPACESHIP_FRAMES = (
-    'space_game/frames/rocket/rocket_frame_1.txt',
-    'space_game/frames/rocket/rocket_frame_2.txt',
+    os.path.join(BASE_DIR, 'frames/rocket/rocket_frame_1.txt'),
+    os.path.join(BASE_DIR, 'frames/rocket/rocket_frame_2.txt'),
 )
 INITIAL_SPACESHIP_POSITION_SHIFT = 2
