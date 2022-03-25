@@ -1,5 +1,5 @@
 install:
-	poetry install
+	poetry install --no-root
 
 space-game:
 	poetry run space-game
