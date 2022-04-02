@@ -19,7 +19,8 @@ def read_controls(canvas) -> tuple:
     Returns:
         state of controls for the next game tic.
     """
-    rows_direction = columns_direction = 0
+    rows_direction = 0
+    columns_direction = 0
     space_pressed = False
     while True:
         pressed_key_code = canvas.getch()
