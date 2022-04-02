@@ -5,12 +5,12 @@ import curses
 import random
 
 from space_game.settings import (
-    BORDER_THICKNESS, BRIGHT_LIFETIME, COMMON_LIFETIME, DIM_LIFETIME, STAR_APPEARANCE_TIMEOUT,
+    BORDER_THICKNESS, BRIGHT_LIFETIME, COMMON_LIFETIME, DIM_LIFETIME, MAX_STAR_APPEARANCE_TIMEOUT,
     STAR_QUANTITY, STAR_SYMBOLS,
 )
 
 
-async def blink(canvas, row, column, symbol):
+async def blink(canvas, row, column, symbol, appearance_timeout):
     """Create star with lifecycle as a coroutine.
 
     Args:
@@ -18,9 +18,10 @@ async def blink(canvas, row, column, symbol):
         row: position of a star (Y).
         column: position of a star (X).
         symbol: form of a star.
+        appearance_timeout: number of tics after which star starts its life cycle.
     """
     canvas.addstr(row, column, symbol, curses.A_DIM)
-    for _ in range(random.randint(1, STAR_APPEARANCE_TIMEOUT)):
+    for _ in range(appearance_timeout):
         await asyncio.sleep(0)
 
     while True:
@@ -57,5 +58,6 @@ def get_stars(canvas) -> list:
             row=random.randint(1, max_row - BORDER_THICKNESS),
             column=random.randint(1, max_column - BORDER_THICKNESS),
             symbol=random.choice(STAR_SYMBOLS),
+            appearance_timeout=random.randint(1, MAX_STAR_APPEARANCE_TIMEOUT),
         ) for _ in range(STAR_QUANTITY)
     ]
