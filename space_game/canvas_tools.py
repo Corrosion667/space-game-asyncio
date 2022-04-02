@@ -17,7 +17,7 @@ def read_controls(canvas) -> tuple:
         canvas: playing field.
 
     Returns:
-        controls !!!todo.
+        state of controls for the next game tic.
     """
     rows_direction = columns_direction = 0
     space_pressed = False
