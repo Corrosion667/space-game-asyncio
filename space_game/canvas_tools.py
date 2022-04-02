@@ -1,4 +1,4 @@
-"""Module with utilities for game running."""
+"""Module with tools for working with graphic objects of game."""
 
 from collections.abc import Iterator
 from itertools import cycle
