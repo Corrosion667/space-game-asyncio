@@ -3,10 +3,12 @@
 import curses
 import time
 
-from space_game.settings import INITIAL_SPACESHIP_POSITION_SHIFT, SPACESHIP_FRAMES_PATHS, TIC_TIMEOUT
+from space_game.canvas_tools import cycle_object_frames
+from space_game.settings import (
+    INITIAL_SPACESHIP_POSITION_SHIFT, SPACESHIP_FRAMES_PATHS, TIC_TIMEOUT,
+)
 from space_game.spaceship import animate_spaceship, fire
 from space_game.stars import get_stars
-from space_game.canvas_tools import cycle_object_frames
 
 
 def draw(canvas):
