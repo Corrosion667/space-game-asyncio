@@ -21,7 +21,7 @@ FIRE_ROWS_SPEED = -0.3
 FIRE_COLUMNS_SPEED = 0
 
 # spaceship
-SPACESHIP_FRAMES = (
+SPACESHIP_FRAMES_PATHS = (
     os.path.join(BASE_DIR, 'frames/rocket/rocket_frame_1.txt'),
     os.path.join(BASE_DIR, 'frames/rocket/rocket_frame_2.txt'),
 )
