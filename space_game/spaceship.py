@@ -48,19 +48,14 @@ async def animate_spaceship(canvas, row, column, ship_frames):
         column: position where to display spaceship (X).
         ship_frames: frames put in a cycle.
     """
-    while True:
+    for spaceship in ship_frames:
         max_row, max_column = canvas.getmaxyx()
         rows_direction, columns_direction, space_pressed = read_controls(canvas)
-        spaceship = next(ship_frames)
         frame_rows, frame_columns = get_frame_size(spaceship)
-        if rows_direction > 0:
-            row = min(row + rows_direction, max_row - frame_rows - BORDER_THICKNESS)
-        elif rows_direction < 0:
-            row = max(row + rows_direction, BORDER_THICKNESS)
-        if columns_direction > 0:
-            column = min(column + columns_direction, max_column - frame_columns - BORDER_THICKNESS)
-        elif columns_direction < 0:
-            column = max(column + columns_direction, BORDER_THICKNESS)
+        row = min(row + rows_direction, max_row - frame_rows - BORDER_THICKNESS)
+        row = max(row, BORDER_THICKNESS)
+        column = min(column + columns_direction, max_column - frame_columns - BORDER_THICKNESS)
+        column = max(column, BORDER_THICKNESS)
         draw_frame(canvas, row, column, spaceship, negative=False)
         for _ in range(2):
             await asyncio.sleep(0)
