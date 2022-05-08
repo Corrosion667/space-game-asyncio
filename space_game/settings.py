@@ -26,3 +26,14 @@ SPACESHIP_FRAMES_PATHS = (
     os.path.join(BASE_DIR, 'frames/rocket/rocket_frame_2.txt'),
 )
 INITIAL_SPACESHIP_POSITION_SHIFT = 2
+
+# garbage
+GARBAGE_TYPES_PATHS = (
+    os.path.join(BASE_DIR, 'frames/space_garbage/duck.txt'),
+    os.path.join(BASE_DIR, 'frames/space_garbage/hubble.txt'),
+    os.path.join(BASE_DIR, 'frames/space_garbage/lamp.txt'),
+    os.path.join(BASE_DIR, 'frames/space_garbage/trash_large.txt'),
+    os.path.join(BASE_DIR, 'frames/space_garbage/trash_small.txt'),
+    os.path.join(BASE_DIR, 'frames/space_garbage/trash_xl.txt'),
+)
+GARBAGE_SPEED = 0.5

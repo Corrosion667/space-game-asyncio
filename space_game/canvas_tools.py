@@ -102,3 +102,20 @@ def cycle_object_frames(paths_to_frames) -> Iterator[str]:
             frame = frame_file.read()
         frames.append(frame)
     return cycle(frames)
+
+
+def get_garbage_types(paths_to_types) -> list[str]:
+    """Get list of available garbage types.
+
+    Args:
+        paths_to_types: paths to files with garbage objects.
+
+    Returns:
+        List of garbage forms.
+    """
+    garbage_types = []
+    for path in paths_to_types:
+        with open(path) as garbage_file:
+            garbage_type = garbage_file.read()
+        garbage_types.append(garbage_type)
+    return garbage_types
